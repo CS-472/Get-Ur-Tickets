@@ -16,6 +16,28 @@ TICKET_API_KEY, FLIGHT_API_KEY = decrypt_file(CONSTANTS_FILE,
 session = requests.Session()
 
 
+def warm_up_flights():
+    """
+    Dummy API call to warm up the ticket connection.
+    """
+    response = session.get(
+        f'https://serpapi.com/search.json?engine=google_flights&output=json&'
+        f'departure_id=MIA&arrival_id=LAS&outbound_date=2025-01-01'
+        f'&return_date=2025-01-02&api_key={FLIGHT_API_KEY}'
+    )
+    response.raise_for_status()
+
+
+def warm_up_tickets():
+    """
+    Dummy API call to warm up the flight connection.
+    """
+    response = session.get(
+        f'https://app.ticketmaster.com/discovery/v2/events.json?'
+        f'apikey={TICKET_API_KEY}&keyword=dummy')
+    response.raise_for_status()
+
+
 def get_flight_info(origin: str, destination: str, start_date: str,
                     end_date: str):
     """

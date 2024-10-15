@@ -1,6 +1,7 @@
 from flask import Flask, request
 from processing import get_total_price_from_api
-# import time
+from processing import warm_up_tickets, warm_up_flights
+import threading
 
 app = Flask(__name__)
 
@@ -19,17 +20,20 @@ def get_best_prices():
     origin_airport_code = json_request['originAirportCode']
     keyword = json_request['keyword']
 
-    # Timing start
-    # start_time = time.time()
-
     result = get_total_price_from_api(origin_airport_code, keyword)
-
-    # Timing end and print
-    # end_time = time.time()
-    # print(f"Total request took {end_time - start_time:.2f} seconds")
 
     return result
 
 
+# Function to warm up the API connection in the background
+def warm_up_background():
+    ticket_thread = threading.Thread(target=warm_up_tickets)
+    flight_thread = threading.Thread(target=warm_up_flights)
+
+    ticket_thread.start()
+    flight_thread.start()
+
+
 def create_app():
+    warm_up_background()
     return app
