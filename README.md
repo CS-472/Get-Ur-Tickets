@@ -70,172 +70,244 @@ You can expect the output to be in a JSON format like the following.
 ```json
 [
     {
-        "Flight_End Date": "2024-10-19",
-        "Flight_Price": 245,
-        "Flight_Start_Date": "2024-10-17",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE3agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMTlqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
-        "Name": "2024 Formula 1 Pirelli United States Grand Prix - Friday",
-        "Ticket_Price": 89.0,
-        "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-18-2024/event/3A006091CC0450AD",
-        "Total_Price": 334.0,
-        "Venue": [
-            "Austin",
-            "Texas"
-        ]
-    },
-    {
-        "Flight_End Date": "2024-10-20",
-        "Flight_Price": 220,
-        "Flight_Start_Date": "2024-10-18",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE4agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMjBqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
-        "Name": "2024 Formula 1 Pirelli United States Grand Prix - Saturday",
-        "Ticket_Price": 179.0,
-        "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-19-2024/event/3A006091CC9350FA",
-        "Total_Price": 399.0,
-        "Venue": [
-            "Austin",
-            "Texas"
-        ]
-    },
-    {
-        "Flight_End Date": "2024-10-21",
-        "Flight_Price": 269,
-        "Flight_Start_Date": "2024-10-19",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE5agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMjFqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 754.0,
         "Name": "2024 Formula 1 Pirelli United States Grand Prix - Sunday",
+        "Venue": "Austin+Texas",
         "Ticket_Price": 249.0,
         "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-20-2024/event/3A006091CD365146",
-        "Total_Price": 518.0,
-        "Venue": [
-            "Austin",
-            "Texas"
-        ]
+        "Flight": {
+            "Flight_Price": 299,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE5agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMjFqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Frontier",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/F9.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 206,
+            "Hotel_Logo": "",
+            "Hotel_Name": "Cambria Hotel Austin Downtown",
+            "Hotel_Class": "3-star hotel"
+        }
     },
     {
-        "Flight_End Date": "2025-03-17",
-        "Flight_Price": 1234,
-        "Flight_Start_Date": "2025-03-15",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE1agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTdqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 783.0,
+        "Name": "2024 Formula 1 Pirelli United States Grand Prix - Saturday",
+        "Venue": "Austin+Texas",
+        "Ticket_Price": 179.0,
+        "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-19-2024/event/3A006091CC9350FA",
+        "Flight": {
+            "Flight_Price": 398,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE4agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMjBqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Frontier",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/F9.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 206,
+            "Hotel_Logo": "",
+            "Hotel_Name": "Cambria Hotel Austin Downtown",
+            "Hotel_Class": "3-star hotel"
+        }
+    },
+    {
+        "Total_Price": 916.0,
+        "Name": "2024 Formula 1 Pirelli United States Grand Prix - Friday",
+        "Venue": "Austin+Texas",
+        "Ticket_Price": 89.0,
+        "Ticket_URL": "https://www.ticketmaster.com/2024-formula-1-pirelli-united-states-austin-texas-10-18-2024/event/3A006091CC0450AD",
+        "Flight": {
+            "Flight_Price": 613,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTE3agcIARIDTEFTcgcIARIDQVVTGh4SCjIwMjQtMTAtMTlqBwgBEgNBVVNyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Frontier",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/F9.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 214,
+            "Hotel_Logo": "",
+            "Hotel_Name": "Cambria Hotel Austin Downtown",
+            "Hotel_Class": "3-star hotel"
+        }
+    },
+    {
+        "Total_Price": 1403.0,
         "Name": "Souvenir Ticket - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Venue": "Albert+Park+Victoria",
         "Ticket_Price": 25.0,
         "Ticket_URL": "https://www.ticketmaster.com.au/souvenir-ticket-formula-1-australian-grand-albert-park-16-03-2025/event/250061339E1A2126",
-        "Total_Price": 1259.0,
-        "Venue": [
-            "Albert Park",
-            "Victoria"
-        ]
+        "Flight": {
+            "Flight_Price": 1378,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE1agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTdqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Alaska",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/AS.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 0,
+            "Hotel_Logo": "",
+            "Hotel_Name": "",
+            "Hotel_Class": ""
+        }
     },
     {
-        "Flight_End Date": "2025-03-17",
-        "Flight_Price": 1234,
-        "Flight_Start_Date": "2025-03-15",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE1agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTdqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 1492.96,
         "Name": "Sunday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Venue": "Albert+Park+Victoria",
         "Ticket_Price": 114.96,
         "Ticket_URL": "https://www.ticketmaster.com.au/sunday-joyflight-formula-1-australian-grand-albert-park-16-03-2025/event/25006130BDE32A68",
-        "Total_Price": 1348.96,
-        "Venue": [
-            "Albert Park",
-            "Victoria"
-        ]
+        "Flight": {
+            "Flight_Price": 1378,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE1agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTdqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Alaska",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/AS.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 0,
+            "Hotel_Logo": "",
+            "Hotel_Name": "",
+            "Hotel_Class": ""
+        }
     },
     {
-        "Flight_End Date": "2025-03-15",
-        "Flight_Price": 1269,
-        "Flight_Start_Date": "2025-03-13",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTEzagcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTVqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 1579.96,
         "Name": "Friday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Venue": "Albert+Park+Victoria",
         "Ticket_Price": 114.96,
         "Ticket_URL": "https://www.ticketmaster.com.au/friday-joyflight-formula-1-australian-grand-albert-park-14-03-2025/event/25006130BDD82A62",
-        "Total_Price": 1383.96,
-        "Venue": [
-            "Albert Park",
-            "Victoria"
-        ]
+        "Flight": {
+            "Flight_Price": 1465,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTEzagcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTVqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Alaska",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/AS.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 0,
+            "Hotel_Logo": "",
+            "Hotel_Name": "",
+            "Hotel_Class": ""
+        }
     },
     {
-        "Flight_End Date": "2025-03-14",
-        "Flight_Price": 1318,
-        "Flight_Start_Date": "2025-03-12",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTEyagcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTRqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
-        "Name": "Thursday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
-        "Ticket_Price": 85.53,
-        "Ticket_URL": "https://www.ticketmaster.com.au/thursday-joyflight-formula-1-australian-grand-albert-park-13-03-2025/event/25006130BDC82A60",
-        "Total_Price": 1403.53,
-        "Venue": [
-            "Albert Park",
-            "Victoria"
-        ]
-    },
-    {
-        "Flight_End Date": "2025-03-16",
-        "Flight_Price": 1318,
-        "Flight_Start_Date": "2025-03-14",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE0agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTZqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 1952.96,
         "Name": "Saturday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Venue": "Albert+Park+Victoria",
         "Ticket_Price": 114.96,
         "Ticket_URL": "https://www.ticketmaster.com.au/saturday-joyflight-formula-1-australian-grand-albert-park-15-03-2025/event/25006130BDDF2A66",
-        "Total_Price": 1432.96,
-        "Venue": [
-            "Albert Park",
-            "Victoria"
-        ]
+        "Flight": {
+            "Flight_Price": 1462,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTE0agcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTZqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Alaska",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/AS.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 376,
+            "Hotel_Logo": "",
+            "Hotel_Name": "Crest on Park Apartments",
+            "Hotel_Class": "4-star hotel"
+        }
     },
     {
-        "Flight_End Date": "2024-10-28",
-        "Flight_Price": 300,
-        "Flight_Start_Date": "2024-10-26",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI2agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjhqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 2026.53,
+        "Name": "Thursday Joyflight - FORMULA 1 AUSTRALIAN GRAND PRIX 2025",
+        "Venue": "Albert+Park+Victoria",
+        "Ticket_Price": 85.53,
+        "Ticket_URL": "https://www.ticketmaster.com.au/thursday-joyflight-formula-1-australian-grand-albert-park-13-03-2025/event/25006130BDC82A60",
+        "Flight": {
+            "Flight_Price": 1547,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI1LTAzLTEyagcIARIDTEFTcgcIARIDTUVMGh4SCjIwMjUtMDMtMTRqBwgBEgNNRUxyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "American",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/AA.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 394,
+            "Hotel_Logo": "",
+            "Hotel_Name": "Crest on Park Apartments",
+            "Hotel_Class": "4-star hotel"
+        }
+    },
+    {
+        "Total_Price": 5189.0,
         "Name": "Individual G04 Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
         "Ticket_Price": 4767.0,
         "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-27-10-2024/event/140060B8940A0DC4",
-        "Total_Price": 5067.0,
-        "Venue": [
-            "M\u00e9xico",
-            "Ciudad de M\u00e9xico"
-        ]
+        "Flight": {
+            "Flight_Price": 288,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI2agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjhqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "Volaris",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/Y4.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 134,
+            "Hotel_Logo": "",
+            "Hotel_Name": "DOWNTOWN MEXICO HOTEL",
+            "Hotel_Class": "3-star hotel"
+        }
     },
     {
-        "Flight_End Date": "2024-10-26",
-        "Flight_Price": 310,
-        "Flight_Start_Date": "2024-10-24",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI0agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjZqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 5429.0,
         "Name": "Individual G04 Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
         "Ticket_Price": 4766.0,
         "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-25-10-2024/event/140060B893DF0D99",
-        "Total_Price": 5076.0,
-        "Venue": [
-            "M\u00e9xico",
-            "Ciudad de M\u00e9xico"
-        ]
+        "Flight": {
+            "Flight_Price": 385,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI0agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjZqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "VivaAerobus",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/VB.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 278,
+            "Hotel_Logo": "",
+            "Hotel_Name": "Hotel Galer\u00eda Plaza Reforma",
+            "Hotel_Class": "4-star hotel"
+        }
     },
     {
-        "Flight_End Date": "2024-10-27",
-        "Flight_Price": 331,
-        "Flight_Start_Date": "2024-10-25",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI1agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjdqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 5477.0,
         "Name": "Individual G04 Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
         "Ticket_Price": 4767.0,
         "Ticket_URL": "https://www.ticketmaster.com.mx/individual-g04-formula-1-2024-mexico-26-10-2024/event/140060B893FA0DB7",
-        "Total_Price": 5098.0,
-        "Venue": [
-            "M\u00e9xico",
-            "Ciudad de M\u00e9xico"
-        ]
+        "Flight": {
+            "Flight_Price": 360,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI1agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjdqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "VivaAerobus",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/VB.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 350,
+            "Hotel_Logo": "",
+            "Hotel_Name": "Hotel Galer\u00eda Plaza Reforma",
+            "Hotel_Class": "4-star hotel"
+        }
     },
     {
-        "Flight_End Date": "2024-10-26",
-        "Flight_Price": 310,
-        "Flight_Start_Date": "2024-10-24",
-        "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI0agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjZqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+        "Total_Price": 50963.0,
         "Name": "Boxes Grada 11 + Speed Lounge Formula 1 2024",
+        "Venue": "M\u00e9xico+Ciudad+de+M\u00e9xico",
         "Ticket_Price": 50300.0,
         "Ticket_URL": "https://www.ticketmaster.com.mx/boxes-grada-11-speed-lounge-formula-mexico-25-10-2024/event/140061329A51126E",
-        "Total_Price": 50610.0,
-        "Venue": [
-            "M\u00e9xico",
-            "Ciudad de M\u00e9xico"
-        ]
+        "Flight": {
+            "Flight_Price": 385,
+            "Flight_URL": "https://www.google.com/travel/flights?hl=en&gl=us&tfs=CBwQAhoeEgoyMDI0LTEwLTI0agcIARIDTEFTcgcIARIDTUVYGh4SCjIwMjQtMTAtMjZqBwgBEgNNRVhyBwgBEgNMQVNCAQFIAXABmAEB",
+            "Airline": "VivaAerobus",
+            "Logo": "https://www.gstatic.com/flights/airline_logos/70px/VB.png",
+            "Travel_Class": "Economy"
+        },
+        "Hotel": {
+            "Hotel_Price": 278,
+            "Hotel_Logo": "",
+            "Hotel_Name": "Hotel Galer\u00eda Plaza Reforma",
+            "Hotel_Class": "4-star hotel"
+        }
     }
 ]
 ```

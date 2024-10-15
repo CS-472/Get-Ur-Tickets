@@ -1,9 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS
 from processing import get_total_price_from_api
 from processing import warm_up_tickets, warm_up_flights
 import threading
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/', methods=['GET'])

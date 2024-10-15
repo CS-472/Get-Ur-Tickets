@@ -1,13 +1,14 @@
 # import os
 import csv
+import json
 import datetime
 import requests
 from encryption_functions import get_key, decrypt_file
 
 KEY_FILE = 'key.encrypted'
 CONSTANTS_FILE = 'constants.env'
-TICKET_API_KEY, FLIGHT_API_KEY = decrypt_file(CONSTANTS_FILE,
-                                              get_key(KEY_FILE))
+TICKET_API_KEY, SERP_API_KEY = decrypt_file(CONSTANTS_FILE,
+                                            get_key(KEY_FILE))
 
 # TICKET_API_KEY = os.getenv('TICKET_API_KEY')
 # FLIGHT_API_KEY = os.getenv('FLIGHT_API_KEY')
@@ -39,21 +40,59 @@ def warm_up_tickets():
 
 
 def get_flight_info(origin: str, destination: str, start_date: str,
-                    end_date: str):
+                    end_date: str) -> dict:
     """
     :param origin: 3-letter origin airport code
     :param destination: 3-letter destination airport code
     :param start_date: Date of outbound flight (%mm-%dd-%YYYY)
     :param end_date: Date of inbound flight (%mm-%dd-%YYYY)
-    :return: SerpAPI response in JSON format
+    :return: Dictionary of Flight Information
     """
     response = session.get(
         f'https://serpapi.com/search.json?engine=google_flights&output=json&'
         f'departure_id={origin}&arrival_id={destination}&outbound_date='
-        f'{start_date}&return_date={end_date}&api_key={FLIGHT_API_KEY}')
+        f'{start_date}&return_date={end_date}&api_key={SERP_API_KEY}')
 
     response.raise_for_status()
-    return response.json()
+    flights = response.json()
+
+    best_flight = flights['best_flights'][0]['flights'][0]
+
+    return {'Flight_Price': flights['price_insights']['lowest_price'],
+            'Flight_URL': flights['search_metadata']['google_flights_url'],
+            'Airline': best_flight['airline'],
+            'Logo': best_flight['airline_logo'],
+            'Travel_Class': best_flight['travel_class']}
+
+
+def get_hotel_info(venue: str, start_date: str, end_date: str) -> dict:
+    """
+    :param venue: Location name using the '+' for spaces
+    :param start_date: Date of outbound flight (%mm-%dd-%YYYY)
+    :param end_date: Date of inbound flight (%mm-%dd-%YYYY)
+    :return: Dictionary of Hotel Information
+    """
+    response = session.get(
+        f'https://serpapi.com/search.json?engine=google_hotels&output=json&'
+        f'q={venue}+Hotels&check_in_date={start_date}&check_out_date='
+        f'{end_date}&api_key={SERP_API_KEY}')
+
+    response.raise_for_status()
+    hotels = response.json()
+
+    best_hotel = hotels['properties'][0]
+
+    if 'rate_per_night' not in best_hotel:
+        return {'Hotel_Price': 0, 'Hotel_Logo': '', 'Hotel_Name': '',
+                'Hotel_Class': ''}
+
+    logo = best_hotel['logo'] if 'logo' in best_hotel else ''
+
+    return {'Hotel_Price': 2 * best_hotel['rate_per_night']
+            ['extracted_before_taxes_fees'],
+            'Hotel_Logo': logo,
+            'Hotel_Name': best_hotel['name'],
+            'Hotel_Class': best_hotel['hotel_class']}
 
 
 def get_total_price_from_file(origin: str = 'LAS') -> list:
@@ -70,8 +109,7 @@ def get_total_price_from_file(origin: str = 'LAS') -> list:
             row['Price'] = float(row['Price'])
 
             if row['Airport'] != origin:
-                date = datetime.datetime.strptime(row['Date'],
-                                                  "%m-%d-%Y")
+                date = datetime.datetime.strptime(row['Date'], '%m-%d-%Y')
                 start_date = str(date +
                                  datetime.timedelta(days=-1)).split(' ')[0]
                 end_date = str(date + datetime.timedelta(days=1)).split(' ')[0]
@@ -89,18 +127,18 @@ def get_total_price_from_file(origin: str = 'LAS') -> list:
 
 
 def get_total_price_from_api(origin: str = 'LAS',
-                             keyword: str = 'formula-1') -> list:
+                             keyword: str = 'formula-1') -> str:
     """
     :param origin: 3-letter origin airport code
     :param keyword: Keyword to pass as
     :return: A sorted list of all the total prices (flight + ticket)
     """
-    airports = {('Miami Gardens', 'Florida'): 'MIA',
-                ('Montreal', 'Quebec'): 'YUL',
-                ('Las Vegas', 'Nevada'): 'LAS',
-                ('Austin', 'Texas'): 'AUS',
-                ('México', 'Ciudad de México'): 'MEX',
-                ('Albert Park', 'Victoria'): 'MEL'
+    airports = {'Miami+Gardens+Florida': 'MIA',
+                'Montreal+Quebec': 'YUL',
+                'Las+Vegas+Nevada': 'LAS',
+                'Austin+Texas': 'AUS',
+                'México+Ciudad+de+México': 'MEX',
+                'Albert+Park+Victoria': 'MEL'
                 }
 
     result = []
@@ -118,18 +156,25 @@ def get_total_price_from_api(origin: str = 'LAS',
 
             location = event['_embedded']['venues'][0]
 
-            city = location['city']['name']
-            state = location['state']['name']
+            city = location['city']['name'].replace(' ', '+')
+            state = location['state']['name'].replace(' ', '+')
 
-            venue = (city, state)
+            venue = city + '+' + state
 
             if airports[venue] == origin:
-                flight_price = 0
-                flight_url = flight_start_date = flight_end_date = ''
+                flight = {'Flight_Price': 0,
+                          'Flight_URL': '',
+                          'Airline': '',
+                          'Logo': '',
+                          'Travel_Class': ''}
+                hotel = {'Hotel_Price': 0,
+                         'Hotel_Logo': '',
+                         'Hotel_Name': '',
+                         'Hotel_Class': ''}
 
             else:
                 date = event['dates']['start']['localDate']
-                date = datetime.datetime.strptime(date, "%Y-%m-%d")
+                date = datetime.datetime.strptime(date, '%Y-%m-%d')
 
                 flight_start_date = str(date +
                                         datetime.timedelta(days=-1)).split(
@@ -137,25 +182,23 @@ def get_total_price_from_api(origin: str = 'LAS',
                 flight_end_date = str(date +
                                       datetime.timedelta(days=1)).split(' ')[0]
 
-                flights = get_flight_info(origin, airports[venue],
-                                          flight_start_date, flight_end_date)
+                flight = get_flight_info(origin, airports[venue],
+                                         flight_start_date, flight_end_date)
+                hotel = get_hotel_info(venue, flight_start_date,
+                                       flight_end_date)
 
-                flight_price = flights['price_insights']['lowest_price']
-                flight_url = flights['search_metadata']['google_flights_url']
-
-            result.append({'Total_Price': ticket_price + flight_price,
+            result.append({'Total_Price': ticket_price +
+                           flight['Flight_Price'] + hotel['Hotel_Price'],
                            'Name': name,
                            'Venue': venue,
                            'Ticket_Price': ticket_price,
                            'Ticket_URL': ticket_url,
-                           'Flight_Price': flight_price,
-                           'Flight_URL': flight_url,
-                           'Flight_Start_Date': flight_start_date,
-                           'Flight_End Date': flight_end_date
+                           'Flight': flight,
+                           'Hotel': hotel,
                            })
 
-    return sorted(result, key=lambda x: x['Total_Price'])
+    return json.dumps(sorted(result, key=lambda x: x['Total_Price']))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print(get_total_price_from_api())
