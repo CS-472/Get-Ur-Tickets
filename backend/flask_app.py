@@ -25,8 +25,10 @@ def get_best_prices():
     return result
 
 
-# Function to warm up the API connection in the background
 def warm_up_background():
+    """
+    Function to warm up the API connection in the background
+    """
     ticket_thread = threading.Thread(target=warm_up_tickets)
     flight_thread = threading.Thread(target=warm_up_flights)
 
