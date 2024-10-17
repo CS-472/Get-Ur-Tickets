@@ -2,12 +2,13 @@ import React, { useState, useContext } from 'react';
 import airportData from '../airportData_flatui.json'; // Import JSON
 import { LocationContext } from '../index';           // Import context
 import '../AirportSearchBar.css';
+import SearchBar from './SearchBar';
 
 const AirportSearchBar = ({ onSelect }) => {
   const { location, setLocation } = useContext(LocationContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredAirports, setFilteredAirports] = useState([]);
-
+  SearchBar.originAirportCode = location;
   const airports = airportData; // Imported JSON data
 
   const handleSearch = (event) => {

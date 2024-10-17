@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { TextField,Input, Button, IconButton, InputAdornment } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import axios from 'axios';
+import PropTypes from 'prop-types'
+import AirportSearchBar from './AirportSearchBar';
 
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const originAirportCode = 'LAS' // hardcoded but can switch to variable for home city
+  const originAirportCode = AirportSearchBar.location
 
 
   // Function to handle input changes
@@ -91,11 +92,10 @@ const SearchBar = ({ onSearchResults }) => {
         onChange={handleInputChange}
         onKeyUpCapture={handleKeyPress}
         placeholder="Search..."
-        InputProps={{
+        Input={{
           endAdornment: searchTerm && (
             <InputAdornment position="end">
               <IconButton onClick={handleClearSearch}>
-                <CloseIcon />
               </IconButton>
             </InputAdornment>
           ),
@@ -112,8 +112,13 @@ const SearchBar = ({ onSearchResults }) => {
       )}
     </div>
   );
+
+
 };
 
+SearchBar.propTypes = {
+  onSearchResult: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
 
