@@ -18,6 +18,7 @@ export function Contact() {
   });
 
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false); // New state for loading animation
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -83,6 +84,7 @@ export function Contact() {
       return;
     }
 
+    setLoading(true); // Show "Sending" animation
     try {
       const response = await fetch("https://formsubmit.co/53714847cf04b6409207a7746e3a4174", {
         method: "POST",
@@ -105,13 +107,15 @@ export function Contact() {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false); // Hide "Sending" animation
     }
   };
 
   return (
     <Container fluid className='banner-container' style={{ padding: "0%", margin: "0%" }}>
       {/* Banner Section */}
-      <div className="d-flex flex-column justify-content-center align-items-center" style={{ paddingTop:'5%' }}>
+      <div className="d-flex flex-column justify-content-center align-items-center" style={{ paddingTop: '5%' }}>
         <img src={NewLogo} alt="Logo" className="img-fluid" style={{ maxWidth: '200px', height: 'auto' }} />
         <div className="text-center mt-3" style={{ fontSize: '4rem', fontFamily: 'sans-serif' }}>
           GET UR TICKETS
@@ -122,20 +126,34 @@ export function Contact() {
       <div className="contact-info">
         <h2>Contact Us</h2>
 
-        {/* Display message above the form fields */}
-        {!formSubmitted && (
+        {!formSubmitted && !loading && (
           <div style={{ textAlign: 'center', marginBottom: '20px', fontSize: '1.2rem', color: 'white' }}>
             Please fill out all fields below.
           </div>
         )}
 
-        {formSubmitted ? (
+        {/* Form Submission Result */}
+        {formSubmitted && (
           <div style={{ textAlign: 'center', marginTop: '20px', fontSize: '1.2rem', color: 'white' }}>
             Thank you! Your response has been recorded.
           </div>
-        ) : (
+        )}
+
+        {/* Sending Animation */}
+        {loading && (
+          <div className='Second-Row-Ticket-Background' style={{ textAlign: 'center' }}>
+            <div style={{ display: 'inline-block', color: 'white', fontSize: '20pt' }}>
+              Sending
+              <div className='dot'></div>
+              <div className='dot'></div>
+              <div className='dot'></div>
+            </div> 
+          </div>
+        )}
+
+        {/* Contact Form */}
+        {!formSubmitted && !loading && (
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '400px', margin: '20px auto' }}>
-            {/* First Name and Last Name fields */}
             <div style={{ display: 'flex', gap: '10px' }}>
               <div style={{ flex: 1 }}>
                 <label>First Name:</label>
@@ -162,8 +180,6 @@ export function Contact() {
                 {formErrors.lastName && <div className="error-message">{formErrors.lastName}</div>}
               </div>
             </div>
-
-            {/* Email field */}
             <div>
               <label>Email:</label>
               <input
@@ -176,8 +192,6 @@ export function Contact() {
               />
               {formErrors.email && <div className="error-message">{formErrors.email}</div>}
             </div>
-
-            {/* Message field */}
             <div>
               <label>Message:</label>
               <textarea
@@ -189,8 +203,6 @@ export function Contact() {
               />
               {formErrors.message && <div className="error-message">{formErrors.message}</div>}
             </div>
-
-            {/* Submit button */}
             <button type="submit">Send Message</button>
           </form>
         )}
